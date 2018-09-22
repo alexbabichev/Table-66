@@ -1,27 +1,27 @@
 page-generate-proof {
-    qrcode {
-        display: block;
-        margin: 0 auto;
-        img {
-            display: inline;
-        }
-    }
-    .buttons-components-page {
+  .id-image {
+    width: 30rem;
 
-        ion-card {
+  }
+  qrcode {
+      display: block;
+      margin: 10rem 5rem;
+      img {
+          display: inline;
+      }
+  }
+  .buttons-components-page {
+      ion-card {
           margin-bottom: 2em;
-        }
-
-        ion-card-content {
+      }
+      ion-card-content {
           background-color: #F4F5F8;
-        }
-
-        ion-card img {
+      }
+      ion-card img {
           width: auto;
           height: 44px;
           display: block;
           margin: 20px auto;
-        }
-
       }
+  }
 }

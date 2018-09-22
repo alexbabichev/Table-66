@@ -7,12 +7,15 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
+<ion-content padding *ngIf="!isSubmitted">
+  <ion-title>Your ID Card</ion-title>
+  <ion-card class="id-image">
     <ion-card-content>
-      <img src="idImage" alt="ID card image" />
+      <img src="assets/imgs/sample-id-card.jpg" alt="ID card image" />
     </ion-card-content>
   </ion-card>
+
+  <ion-title>Select information to share</ion-title>
   <ion-list>
     <ion-item>
       <ion-label>Identity's ID</ion-label>
@@ -31,8 +34,11 @@
       <ion-checkbox color="dark" checked="myData.address"></ion-checkbox>
     </ion-item>
   </ion-list>
-  <div class="text-center">
+  <button ion-button round (click)='generateQRCode();'>Generate QR Code</button>
+</ion-content>
+
+<ion-content *ngIf="isSubmitted">
+  <div class="text-center" *ngIf="isSubmitted">
     <qrcode [qrdata]="'Your QR code data string'" [size]="256" [level]="'M'"></qrcode>
   </div>
-  <button ion-button round>Generate</button>
 </ion-content>
