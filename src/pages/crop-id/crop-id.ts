@@ -1,7 +1,8 @@
 //our root app component
 import { Component, ViewChild } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
+import { BackendSvcProvider, MetaData } from '../../providers/backend-svc/backend-svc';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,15 +11,17 @@ import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper'
 })
 
 export class CropIdPage {
-  name: string;
-  data1: any;
-  cropperSettings1: CropperSettings;
-  croppedWidth: number;
-  croppedHeight: number;
+  public name: string;
+  public croppedImage: any;
+  public cropperSettings1: CropperSettings;
+  public croppedWidth: number;
+  public croppedHeight: number;
+
+  private originalImage: any;
 
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
-  constructor() {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.cropperSettings1 = new CropperSettings();
     this.cropperSettings1.width = 150;
     this.cropperSettings1.height = 200;
@@ -38,7 +41,8 @@ export class CropIdPage {
     this.cropperSettings1.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';
     this.cropperSettings1.cropperDrawSettings.strokeWidth = 2;
 
-    this.data1 = {};
+    this.croppedImage = {};
+
   }
 
   cropped(bounds: Bounds) {
@@ -54,13 +58,22 @@ export class CropIdPage {
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
-
+      that.originalImage = image;
     };
 
     myReader.readAsDataURL(file);
   }
 
   uploadCroppedPhoto() {
+    let myMetaData = {
 
+    };
+    const croppedPhoto = this.croppedImage.image;
+    const fullPhotos = this.originalImage;
+    return this.onNavigate('HomePage');
+  }
+
+  onNavigate(page: string) {
+    this.navCtrl.pop();
   }
 }

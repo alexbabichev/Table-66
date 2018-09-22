@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
   and Angular DI.
 */
 
-interface MetaData {
+export interface MetaData {
   firstName: string;
   lastName: string;
   nationality: string;
@@ -40,17 +40,17 @@ export class BackendSvcProvider {
 
   getPhotoInfo(location: string) {
     const fullUrl = this.url + location;
-    return this.http.get(fullUrl);
+    return this.http.get(fullUrl).toPromise();
   }
 
   deleteDoc(location: string) {
     const fullUrl = this.url + location;
-    return this.http.delete(fullUrl);
+    return this.http.delete(fullUrl).toPromise();
   }
 
   sharePartialData(documentHash: string, partialMetadata: Partial<MetaData>) {
     let fullUrl = this.url + 'share/' + documentHash;
-    return this.http.post(fullUrl, partialMetadata);
+    return this.http.post(fullUrl, partialMetadata).toPromise();
   }
 
   // /verify/8c45c8a4f4050d49d082b47150bec5d3c693478ade637abd954d15de20b09de0

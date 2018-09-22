@@ -1,16 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Upload and crop ID
-    </ion-title>
+    <ion-title>Upload and crop ID</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2 *ngIf="data1 && data1.image">Crop your face area</h2>
-  <img-cropper [image]="data1" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
+  <h2 *ngIf="croppedImage && croppedImage.image">Crop your face area</h2>
+  <img-cropper [image]="croppedImage" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
 
-  <div *ngIf="data1 && data1.image">
+  <div *ngIf="croppedImage && croppedImage.image">
     <br />
     <br />
     <h2>
@@ -18,9 +16,9 @@
     </h2>
 
     <div>
-      <img [src]="data1.image" [width]="croppedWidth" [height]="croppedHeight" class="cropped-image">
+      <img [src]="croppedImage.image" [width]="croppedWidth" [height]="croppedHeight" class="cropped-image">
     </div>
-    <button ion-button (click)="uploadCroppedPhoto()">Upload</button>
+    <button ion-button (click)="uploadCroppedPhoto()" (click)="uploadCroppedPhoto()">Upload</button>
   </div>
 
 </ion-content>
