@@ -2,12 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { EosProvider } from '../../providers/eos/eos';
+import { DocsProvider } from '../../providers/docs/docs';
 
-interface Doc {
-  title: string;
-  date: string;
-  proof: boolean;
-}
 
 @Component({
   selector: 'page-home',
@@ -15,19 +11,10 @@ interface Doc {
 })
 export class HomePage {
 
-  public docs: Array<Doc> = [{
-    title: 'National ID',
-    date: '01/01/1900',
-    proof: true
-  },{
-    title: 'Driver License',
-    date: '01/01/1900',
-    proof: false
-  }];
-
   constructor(
     public navCtrl: NavController,
-    private eos: EosProvider
+    private eos: EosProvider,
+    public docs: DocsProvider
   ) { 
     this.eos.connect();
   }
