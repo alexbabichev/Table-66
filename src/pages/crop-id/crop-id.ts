@@ -1,5 +1,5 @@
 //our root app component
-import { Component, NgModule, ViewChild } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
 

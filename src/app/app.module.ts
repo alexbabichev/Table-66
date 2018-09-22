@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { EosProvider } from '../providers/eos/eos';
 import { PhotoProvider } from '../providers/photo/photo';
+import { BackendSvcProvider } from '../providers/backend-svc/backend-svc';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PhotoProvider } from '../providers/photo/photo';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EosProvider,
-    PhotoProvider
+    PhotoProvider,
+    BackendSvcProvider
   ]
 })
 export class AppModule {}
