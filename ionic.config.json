@@ -1,0 +1,7 @@
+{
+  "name": "eos-hack",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
