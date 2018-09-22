@@ -18,4 +18,8 @@ export class HomePage {
   onNavigate(page: string) {
     this.navCtrl.push(page);
   }
+
+  test() {
+    this.docs.add();
+  }
 }
