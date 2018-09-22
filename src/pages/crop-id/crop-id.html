@@ -1,18 +1,25 @@
-<!--
-  Generated template for the CropIdPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>cropId</ion-title>
+    <ion-title>
+      Upload and crop ID
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <div>
+    <h2 *ngIf="data1 && data1.image">Crop your face area</h2>
+    <img-cropper [image]="data1" [settings]="cropperSettings1" (onCrop)="cropped($event)"></img-cropper>
+    <ion-card *ngIf="data1 && data1.image">
+      <ion-card-title>
+        Visible area
+      </ion-card-title>
+      <div>
+        <img [src]="data1.image" [width]="croppedWidth" [height]="croppedHeight" class="cropped-image">
+      </div>
+      <ion-card-content>
+        <button ion-button>Upload</button>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

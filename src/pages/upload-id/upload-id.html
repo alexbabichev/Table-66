@@ -1,41 +1,31 @@
-<!--
-  Generated template for the UploadIdPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Upload Id</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-list>
+    <ion-item>
+      <ion-label fixed>Id</ion-label>
+      <ion-input type="text" [value]="uploadData.identityId"></ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label fixed>Full name</ion-label>
-      <ion-input type="text" value=""></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label fixed>Age</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="text" [value]="uploadData.fullName"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label fixed>Id</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-label fixed>Date of birth</ion-label>
+      <ion-input type="text" [value]="uploadData.dateOfBirth"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Address</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="text" [value]="uploadData.address"></ion-input>
     </ion-item>
-  
+
   </ion-list>
-  <button ion-button block (click)="onNavigate('CropIdPage')">Take a photo</button>
+  <button ion-button block (click)="onNavigate('CropIdPage')">Upload ID</button>
 </ion-content>
