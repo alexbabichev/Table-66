@@ -16,14 +16,27 @@ import image from './image';
 })
 export class VerificatorPage {
 
+  public sharedData = {
+    identityId: '123456',
+    dateOfBirth: '01/01/1900'
+  };
+  public sharedDataKeys = [];
+
   private _placeHolderSafe: SafeUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sanitizer: DomSanitizer) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private sanitizer: DomSanitizer) {
 
   }
 
-  ionViewDidLoad() {
+  public ionViewDidLoad() {
     console.log('ionViewDidLoad VerificatorPage');
+  }
+
+  public objectKeys(items) {
+    return Object.keys(items);
   }
 
   public ngOnInit() {
