@@ -1,39 +1,80 @@
-// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import ScatterJS from 'scatter-js/dist/scatter.esm';
+import Eos from 'eosjs';
 
-const network = {
-  blockchain:'eos',
-  protocol:'http',
-  host:'dev.cryptolions.io',
-  port:38888,
-  chainId:'038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca'
-}
+import { HashObj } from './model';
+import { userData, config } from './config';
 
 @Injectable()
 export class EosProvider {
 
+  private eos: any;
+  private contractName = 'epsilon';
+  private contract: any;
+
+  public hashes: Array<HashObj>;
+
   constructor() {
-    console.log('Hello EosProvider Provider');
     this.connect();
   }
 
   async connect() {
     try {
-      const connected = await ScatterJS.scatter.connect("Put_Your_App_Name_Here");
-      const scatter = ScatterJS.scatter;
-      const requiredFields = { accounts:[network] };
-      const identity = await scatter.getIdentity(requiredFields);
+      this.eos = Eos(config);
+      this.test();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-      const account = scatter.identity.accounts.find(x => x.blockchain === 'eos');
-      const eosOptions = { expireInSeconds: 60 };
+  async test() {
+    try {
+      this.contract = await this.eos.contract(this.contractName);
 
-      console.log(account, eosOptions);
+      const balance = await this.getBalance(userData[0].username);
+      console.log('Currency Balance', balance)
+
+      this.hashes = await this.getTable('hashdata');
+      console.log(this.hashes);
 
     } catch (error) {
       console.log(error);
     }
+
+  }
+
+  // get balance
+
+  getBalance(username) {
+    return this.eos.getAccount(username)
+      .then(r => r.core_liquid_balance);
+  }
+
+  //
+
+  getTable(tableName) {
+    return this.eos.getTableRows(true, this.contractName, this.contractName, tableName)
+      .then(r => r.rows);
+  }
+
+  // contract methods
+  // action’ы adduser и removeuser требуют отправки из кошеля epsilon, 
+  // add из любого акка, approve только от добавленного акка, который добавлен с помощью функции adduser
+
+  add(hash = '') {
+    return this.contract.add(hash);
+  }
+
+  adduser(user: string) {
+    return this.contract.adduser(user);
+  }
+
+  approve(sender: string, hash: string) {
+    return this.contract.approve(sender, hash);
+  }
+
+  removeuser(user: string) {
+    return this.contract.removeuser(user);
   }
 
 }
