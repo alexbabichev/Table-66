@@ -6,6 +6,7 @@
 *.log
 *.tmp
 *.tmp.*
+*.iml
 log.txt
 *.sublime-project
 *.sublime-workspace
@@ -23,6 +24,7 @@ dist/
 node_modules/
 tmp/
 temp/
+target/
 platforms/
 plugins/
 plugins/android.json
