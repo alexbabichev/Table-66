@@ -1,0 +1,126 @@
+{
+  "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Sat Sep 22 21:14:02 2018",
+  "version": "eosio::abi/1.0",
+  "structs": [
+    {
+      "name": "add",
+      "base": "",
+      "fields": [
+        {
+          "name": "hash",
+          "type": "checksum256"
+        }
+      ]
+    },
+    {
+      "name": "adduser",
+      "base": "",
+      "fields": [
+        {
+          "name": "user",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "approve",
+      "base": "",
+      "fields": [
+        {
+          "name": "sender",
+          "type": "name"
+        },
+        {
+          "name": "hash",
+          "type": "checksum256"
+        }
+      ]
+    },
+    {
+      "name": "hashdata",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "hash",
+          "type": "checksum256"
+        }
+      ]
+    },
+    {
+      "name": "removeuser",
+      "base": "",
+      "fields": [
+        {
+          "name": "user",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "user",
+          "type": "name"
+        }
+      ]
+    }
+  ],
+  "types": [],
+  "actions": [
+    {
+      "name": "add",
+      "type": "add",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "adduser",
+      "type": "adduser",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "approve",
+      "type": "approve",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "removeuser",
+      "type": "removeuser",
+      "ricardian_contract": ""
+    }
+  ],
+  "tables": [
+    {
+      "name": "hashdata",
+      "type": "hashdata",
+      "index_type": "i64",
+      "key_names": ["id", "hash"],
+      "key_types": ["uint64", "sha256"]
+    },
+    {
+      "name": "pendinghash",
+      "type": "hashdata",
+      "index_type": "i64",
+      "key_names": ["id", "hash"],
+      "key_types": ["uint64", "sha256"]
+    },
+    {
+      "name": "users",
+      "type": "users",
+      "index_type": "i64",
+      "key_names": ["id", "user"],
+      "key_types": ["uint64", "name"]
+    }
+  ],
+  "ricardian_clauses": [],
+  "abi_extensions": []
+}
