@@ -1,3 +1,9 @@
 page-generate-proof {
-
+    qrcode {
+        display: block;
+        margin: 0 auto;
+        img {
+            display: inline;
+        }
+    }
 }
