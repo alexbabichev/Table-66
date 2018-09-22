@@ -1,9 +1,3 @@
-<!--
-  Generated template for the GenerateProofPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,18 +8,29 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <img src="idImage" alt="ID card image" />
+    </ion-card-content>
+  </ion-card>
   <ion-list>
-    <button ion-item >
-      Full Name
-    </button> 
-    <button ion-item >
-      Age
-    </button> 
-    <button ion-item >
-      Id
-    </button> 
-    <button ion-item >
-      Address
-    </button> 
+    <ion-item>
+      <ion-label>Identity's ID</ion-label>
+      <ion-checkbox color="dark" checked="myData.identityId"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Full Name</ion-label>
+      <ion-checkbox color="dark" checked="myData.fullName"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date of birth</ion-label>
+      <ion-checkbox color="dark" checked="myData.dateOfBirth"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Address</ion-label>
+      <ion-checkbox color="dark" checked="myData.address"></ion-checkbox>
+    </ion-item>
   </ion-list>
+  <button ion-button round>Generate</button>
+
 </ion-content>

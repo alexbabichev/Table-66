@@ -14,6 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'generate-proof.html',
 })
 export class GenerateProofPage {
+  public myData = {
+    identityId: false,
+    fullName: false,
+    dateOfBirth: false,
+    address: false,
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
