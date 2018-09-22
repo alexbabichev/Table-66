@@ -14,20 +14,18 @@ export class EosProvider {
 
   public hashes: Array<HashObj>;
 
-  constructor() {
-    this.connect();
-  }
+  constructor() { }
 
   async connect() {
     try {
       this.eos = Eos(config);
-      this.test();
+      this.initContract();
     } catch (error) {
       console.log(error);
     }
   }
 
-  async test() {
+  async initContract() {
     try {
       this.contract = await this.eos.contract(this.contractName);
 
@@ -36,11 +34,9 @@ export class EosProvider {
 
       this.hashes = await this.getTable('hashdata');
       console.log(this.hashes);
-
     } catch (error) {
       console.log(error);
     }
-
   }
 
   // get balance

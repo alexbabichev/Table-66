@@ -8,10 +8,20 @@
 
 <ion-content padding>
   <p>
-    <button ion-button block (click)="onNavigate('UserPage')" color="primary">User</button>
+    <button ion-button block (click)="onNavigate('UploadIdPage')">Add Document</button>
   </p>
-  <p class="text-center">or</p>
-  <p>
-    <button ion-button block (click)="onNavigate('VerificatorPage')" color="secondary">Verificator</button>
+  <p class="text-center" *ngIf="docs.length">
+    or select validated document
   </p>
+  <ion-list>
+    <button ion-item *ngFor="let doc of docs.list" (click)="onNavigate('GenerateProofPage')">
+      <ion-icon name="checkmark-circle" item-start *ngIf="doc.proof"></ion-icon>
+      <ion-icon name="empty" item-start *ngIf="!doc.proof"></ion-icon>
+      <h2>{{doc.title}}</h2>
+      <p>{{doc.date}}</p>
+    </button>
+  </ion-list>
 </ion-content>
+<ion-footer padding>
+  <p (click)="onNavigate('VerificatorPage')">Verificator Page</p>
+</ion-footer>
