@@ -14,6 +14,8 @@ export class GenerateProofPage {
     address: false,
   };
 
+  public qrdata: string = location.protocol + '//' + location.host + '/#/verificator';
+
   public idImage = 'resources/sample-id-card.jpg';
   public isSubmitted = false;
 

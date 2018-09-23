@@ -39,6 +39,7 @@
 
 <ion-content *ngIf="isSubmitted">
   <div class="text-center" *ngIf="isSubmitted">
-    <qrcode [qrdata]="'Your QR code data string'" [size]="256" [level]="'M'"></qrcode>
+    <qrcode [qrdata]="qrdata" [size]="256" [level]="'M'"></qrcode>
+    <a [href]="qrdata">Verificator</a>
   </div>
 </ion-content>
