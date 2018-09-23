@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import image from './image';
 import {metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+// import { Doc } from '../../providers/docs/model';
 
 /**
  * Generated class for the VerificatorPage page.
@@ -19,13 +20,14 @@ import {metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
 export class VerificatorPage {
 
   public sharedData = {
-    passportNumber: '123456',
-    birth: '01/01/1900'
+    passportNumber: '1234567890',
+    birth: '01/01/1990'
   };
   public sharedDataKeys = [];
 
   private _placeHolderSafe: SafeUrl;
   public metadataDisplayNames = metadataDisplayNames;
+  // public doc: Doc;
 
   constructor(
     public navCtrl: NavController,
@@ -36,6 +38,7 @@ export class VerificatorPage {
 
   public ionViewDidLoad() {
     console.log('ionViewDidLoad VerificatorPage');
+    // this.doc = this.navParams.data;
   }
 
   public objectKeys(items) {
