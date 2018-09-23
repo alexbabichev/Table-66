@@ -17,22 +17,6 @@
 
   <ion-title>Select information to share</ion-title>
   <ion-list>
-    <!-- <ion-item>
-      <ion-label>Identity's ID</ion-label>
-      <ion-checkbox color="dark" checked="myData.identityId"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Full Name</ion-label>
-      <ion-checkbox color="dark" checked="myData.fullName"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Date of birth</ion-label>
-      <ion-checkbox color="dark" checked="myData.dateOfBirth"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Address</ion-label>
-      <ion-checkbox color="dark" checked="myData.address"></ion-checkbox>
-    </ion-item> -->
     <ion-item *ngFor="let key of getKeys(metadataDisplayNames)">
       <ion-label>{{metadataDisplayNames[key]}}</ion-label>
       <ion-checkbox color="dark" checked="myData[key]"></ion-checkbox>

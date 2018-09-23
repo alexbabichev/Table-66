@@ -10,12 +10,12 @@ import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backen
 })
 export class UploadIdPage {
 
-  public uploadData = {
-    identityId: '',
-    fullName: '',
-    dateOfBirth: '',
-    address: '',
-  };
+  // public uploadData = {
+  //   identityId: '',
+  //   fullName: '',
+  //   dateOfBirth: '',
+  //   address: '',
+  // };
 
   public metadata: MetaData;
   public metadataDisplayNames: MetaData;
