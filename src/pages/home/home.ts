@@ -22,7 +22,7 @@ export class HomePage {
   }
 
   onNavigate(page: string, params?: any) {
-    this.navCtrl.push(page);
+    this.navCtrl.push(page, params);
   }
 
   test() {

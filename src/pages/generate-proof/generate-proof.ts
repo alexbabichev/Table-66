@@ -35,7 +35,7 @@ export class GenerateProofPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GenerateProofPage');
-    this.doc = this.navParams.data.doc;
+    this.doc = this.navParams.data;
     this.qrdata = location.protocol + '//' + location.host + '/#/verificator';
   }
 

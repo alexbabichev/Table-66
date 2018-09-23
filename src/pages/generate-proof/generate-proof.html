@@ -10,8 +10,8 @@
 <ion-content padding *ngIf="!isSubmitted">
   <ion-title>Your ID Card</ion-title>
   <ion-card class="id-image">
-    <ion-card-content *ngIf="doc && doc.croppedImage">
-      <img [src]="doc.croppedImage" alt="ID card image" />
+    <ion-card-content *ngIf="doc && doc.fullImage">
+      <img [src]="doc.fullImage" alt="ID card image" />
     </ion-card-content>
   </ion-card>
 
