@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+import { MetaData, metadataDisplayNames } from '../../providers/backend-svc/backend-svc';
 import { DocsProvider } from '../../providers/docs/docs';
 import { Doc } from '../../providers/docs/model';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -56,8 +57,7 @@ export class UploadIdPage {
   }
 
   navigateHome() {
-    this.navCtrl.pop();
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
