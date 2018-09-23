@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import {MetaData} from '../../providers/backend-svc/backend-svc';
+import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
 
 @IonicPage()
 @Component({
@@ -23,16 +23,7 @@ export class UploadIdPage {
   private croppedPhoto: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.metadataDisplayNames = {
-      passportNumber: 'ID number',
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      birth: 'Birth Date',
-      expirationDate: 'Expiration date',
-      issueDate: 'Issue date',
-      issuer: 'Issuer',
-      nationality: 'Nationality',
-    };
+    this.metadataDisplayNames = metadataDisplayNames;
   }
 
   ionViewDidLoad() {

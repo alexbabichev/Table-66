@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+
 
 @IonicPage()
 @Component({
@@ -19,12 +21,31 @@ export class GenerateProofPage {
   public idImage = 'resources/sample-id-card.jpg';
   public isSubmitted = false;
 
+
+  public metadata: any;
+  public metadataDisplayNames: MetaData;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.metadataDisplayNames = metadataDisplayNames;
+    this.metadata = {
+      firstName: false,
+      lastName: false,
+      birth: false,
+      expirationDate: false,
+      issueDate: false,
+      issuer: false,
+      nationality: false,
+      passportNumber: false
+    };
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GenerateProofPage');
     this.qrdata = location.protocol + '//' + location.host + '/#/verificator';
+  }
+
+  getKeys(items) {
+    return Object.keys(items);
   }
 
   generateQRCode() {
