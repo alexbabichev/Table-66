@@ -16,18 +16,17 @@ export class AppovePage {
     public docs: DocsProvider
   ) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AppovePage');
-  }
-
   async onClick(doc) {
-    console.log(doc);
+    if (doc.loading)
+      return;
+    doc.loading = true;
     try {
       await this.docs.eos.approve(doc.hash);
+      doc.loading = false;
+      doc.proof = true;
     } catch (error) {
+      doc.loading = false;
       console.log(error);
     }
-    
   }
-
 }
