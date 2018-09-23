@@ -25,14 +25,14 @@ export class UploadIdPage {
     this.croppedImage = this.navParams.data.croppedPhoto;
     this.fullImage = this.navParams.data.fullPhoto;
     this.metadata = {
-      firstName: '',
-      lastName: '',
-      birth: '',
-      expirationDate: '',
-      issueDate: '',
-      issuer: '',
-      nationality: '',
-      passportNumber: ''
+      firstName: 'John',
+      lastName: 'Doe',
+      birth: '01/01/1990',
+      expirationDate: '01/01/2020',
+      issueDate: '01/01/2010',
+      issuer: 'EOS',
+      nationality: 'Hackville',
+      passportNumber: '1234567890'
     };
   }
 
