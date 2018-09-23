@@ -19,9 +19,11 @@
       <ion-icon name="empty" item-start *ngIf="!doc.proof"></ion-icon>
       <h2>{{doc.title}}</h2>
       <p>{{doc.date}}</p>
+      <ion-avatar item-end *ngIf="doc.proof">
+        <img src="assets/imgs/barclays-logo.png">
+      </ion-avatar>
     </button>
   </ion-list>
-  <p (click)="test()">add</p>
 </ion-content>
 
 <ion-footer padding>

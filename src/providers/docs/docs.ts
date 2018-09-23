@@ -10,7 +10,8 @@ export class DocsProvider {
   public list: Array<Doc> = [{
     title: 'National ID',
     date: '01/01/1900',
-    proof: true
+    proof: true,
+    proofBy: ['barclays']
   }, {
     title: 'Driver License',
     date: '01/01/1900',
