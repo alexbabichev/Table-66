@@ -41,7 +41,7 @@ export class UploadIdPage {
   submitNewDocument() {
     const data: Doc = {
       title: 'Government ID',
-      date: new Date(this.metadata.birth) as any,
+      date: Date.now(),
       proof: false
     };
     this.docs.addDocument(data)
