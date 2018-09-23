@@ -17,7 +17,7 @@ export interface MetaData {
   issueDate: string;
   expirationDate: string;
   issuer: string;
-};
+}
 
 @Injectable()
 export class BackendSvcProvider {
@@ -34,7 +34,7 @@ export class BackendSvcProvider {
       passport: fullImage,
       photo: faceImage,
       ...metaData
-    }
+    };
     return this.http.post(fullUrl, data, {});
   }
 
