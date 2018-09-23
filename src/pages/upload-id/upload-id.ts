@@ -18,18 +18,35 @@ export class UploadIdPage {
   };
 
   public metadata: MetaData;
+  public metadataDisplayNames: MetaData;
 
   private croppedPhoto: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+    this.metadataDisplayNames = {
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      birth: 'Birth Date',
+      expirationDate: 'Expiration date',
+      issueDate: 'Issue date',
+      issuer: 'Issuer',
+      nationality: '',
+      passportNumber: ''
+    };
   }
 
   ionViewDidLoad() {
     this.croppedPhoto = this.navParams.data.croppedPhoto;
     this.metadata = {
       firstName: '',
-    }
+      lastName: '',
+      birth: '',
+      expirationDate: '',
+      issueDate: '',
+      issuer: '',
+      nationality: '',
+      passportNumber: ''
+    };
   }
 
   onNavigate(page: string) {
