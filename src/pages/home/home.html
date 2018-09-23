@@ -20,8 +20,12 @@
       <h2>{{doc.title}}</h2>
       <p>{{doc.date}}</p>
       <p><small>{{doc.hash}}</small></p>
+      <ion-avatar item-end *ngIf="doc.proof">
+          <img src="assets/imgs/barclays-logo.png">
+        </ion-avatar>
     </button>
   </ion-list>
+  <p><button (click)="test()">add</button></p>
 </ion-content>
 
 <ion-footer padding>

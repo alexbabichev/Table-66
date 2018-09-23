@@ -10,8 +10,14 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let doc of docs.eos.pending" (click)="onClick(doc)">
+      <ion-icon name="alert" item-start *ngIf="!doc.proof && !doc.loading"></ion-icon>
+      <ion-icon name="checkmark-circle" item-start *ngIf="doc.proof"></ion-icon>
+      <ion-icon name="ios-refresh" item-start *ngIf="doc.loading"></ion-icon>
       <p><small>{{doc.hash}}</small></p>
-      <p>{{doc.id}}</p>
+      <p>ID: {{doc.id}}</p>
     </button>
   </ion-list>
+  <p *ngIf="!docs.eos.pending || !docs.eos.pending.length">
+    loading...
+  </p>
 </ion-content>
