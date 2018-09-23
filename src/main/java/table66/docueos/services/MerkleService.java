@@ -7,9 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import table66.docueos.model.Passport;
 
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.lang.reflect.Field;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -43,8 +45,9 @@ public class MerkleService {
             p.issueDate = issueDate;
             p.expirationDate = expirationDate;
             p.issuer = issuer;
+            p.buildMerkleTree();
             p.save();
-            String hash = p.calculateHash();
+            String hash = p.getRootHashHex();
             passportStorage.put(hash, p);
             // TODO: "/passport/" should not be hardcoded
             return ResponseEntity.created(new URI("/passport/" + hash)).build();
@@ -58,7 +61,6 @@ public class MerkleService {
     public Passport download(@PathVariable("hash") String passportHash) {
         Passport passport = passportStorage.get(passportHash);
         if(passport == null) {
-            // TODO: returns 500, should be 404
             throw new NotFoundException();
         }
         return passport;
@@ -66,23 +68,23 @@ public class MerkleService {
 
     @RequestMapping(value = "/passport/{hash}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("hash") String passportHash) {
-        passportStorage.remove(passportHash);
+        if(passportStorage.remove(passportHash) == null) {
+            throw new NotFoundException();
+        }
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/share/{hash}", method = RequestMethod.GET)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.POST)
     public ResponseEntity<?> share(
             @PathVariable("hash") String passportHash,
             @RequestParam("fields") String[] fields
     ) {
         try {
             if (fields == null || fields.length == 0) {
-                // TODO: returns 500, should be 400
                 throw new BadRequestException("specify at least one field");
             }
             Passport passport = passportStorage.get(passportHash);
             if (passport == null) {
-                // TODO: returns 500, should be 404
                 throw new NotFoundException();
             }
             Passport share = new Passport();
@@ -93,32 +95,44 @@ public class MerkleService {
                     to.set(share, from.get(passport));
                 }
                 catch (Exception e) {
-                    // TODO: returns 500, should be 400
                     throw new BadRequestException("no such field: " + field);
                 }
             }
+            share.buildMerkleProof(passport);
             String hash = share.calculateHash();
             shareStorage.put(hash, share);
-            // TODO: "/verify/" should not be hardcoded
-            return ResponseEntity.created(new URI("/verify/" + hash)).build();
+            // TODO: "/verification/" should not be hardcoded
+            return ResponseEntity.created(new URI("/verification/" + hash)).build();
         }
         catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    @RequestMapping(value = "/share/{hash}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeShare(@PathVariable("hash") String shareHash) {
-        shareStorage.remove(shareHash);
+        if(shareStorage.remove(shareHash) == null) {
+            throw new NotFoundException();
+        }
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/verify/{hash}", method = RequestMethod.GET)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.GET)
     public Passport verify(@PathVariable("hash") String shareHash) {
         Passport share = shareStorage.get(shareHash);
         if(share == null) {
-            // TODO: returns 500, should be 404
             throw new NotFoundException();
+        }
+        share.rebuildMerkleProof();
+        if(share.rootHash == null) {
+          throw new InternalServerErrorException("resource specified is corrupted");
+        }
+        Passport passport = passportStorage.get(share.getRootHashHex());
+        if(passport == null) {
+            throw new NotFoundException("cannot verify the resource");
+        }
+        if(!Arrays.equals(share.rootHash, passport.rootHash)) {
+          throw new NotFoundException("not a valid resource");
         }
         return share;
     }

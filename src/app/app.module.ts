@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { EosProvider } from '../providers/eos/eos';
 import { PhotoProvider } from '../providers/photo/photo';
 import { DocsProvider } from '../providers/docs/docs';
+import { BackendSvcProvider } from '../providers/backend-svc/backend-svc';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DocsProvider } from '../providers/docs/docs';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EosProvider,
     PhotoProvider,
-    DocsProvider
+    DocsProvider,
+    BackendSvcProvider
   ]
 })
 export class AppModule {}

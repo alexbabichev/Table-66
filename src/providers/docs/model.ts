@@ -3,4 +3,5 @@ export interface Doc {
   date: number;
   proof: boolean;
   hash?: string;
+  proofBy?: any[]
 }
