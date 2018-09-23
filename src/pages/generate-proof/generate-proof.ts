@@ -14,7 +14,7 @@ export class GenerateProofPage {
     address: false,
   };
 
-  public qrdata: string = location.protocol + '//' + location.host + '/#/verificator';
+  public qrdata: string;
 
   public idImage = 'resources/sample-id-card.jpg';
   public isSubmitted = false;
@@ -24,6 +24,7 @@ export class GenerateProofPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GenerateProofPage');
+    this.qrdata = location.protocol + '//' + location.host + '/#/verificator';
   }
 
   generateQRCode() {
