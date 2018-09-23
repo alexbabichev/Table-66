@@ -7,6 +7,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
+      <ion-title>Full ID</ion-title>
+      <img src="assets/imgs/sample-id-card.jpg">
+      <ion-title>Cropped ID</ion-title>
+      <img [src]="croppedPhoto">
+    </ion-item>
+    <ion-item>
       <ion-label fixed>Identity's ID</ion-label>
       <ion-input type="text" [value]="uploadData.identityId"></ion-input>
     </ion-item>

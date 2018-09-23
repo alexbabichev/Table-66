@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import {MetaData} from '../../providers/backend-svc/backend-svc';
+
 @IonicPage()
 @Component({
   selector: 'page-upload-id',
@@ -15,16 +17,24 @@ export class UploadIdPage {
     address: '',
   };
 
+  public metadata: MetaData;
+
+  private croppedPhoto: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UploadIdPage');
+    this.croppedPhoto = this.navParams.data.croppedPhoto;
+    this.metadata = {
+      firstName: '',
+    }
   }
 
   onNavigate(page: string) {
-    this.navCtrl.push(page);
+    this.navCtrl.pop();
+    this.navCtrl.pop();
   }
 
 }
