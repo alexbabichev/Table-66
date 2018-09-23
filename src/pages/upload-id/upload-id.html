@@ -5,27 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+  <ion-list *ngIf="metadata">
     <ion-item>
-      <ion-label fixed>Identity's ID</ion-label>
-      <ion-input type="text" [value]="uploadData.identityId"></ion-input>
+      <ion-title>Full ID</ion-title>
+      <img src="assets/imgs/sample-id-card.jpg">
+      <ion-title>Cropped ID</ion-title>
+      <img [src]="croppedPhoto">
     </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Full name</ion-label>
-      <ion-input type="text" [value]="uploadData.fullName"></ion-input>
+    <ion-item *ngFor="let key of getKeys(metadataDisplayNames)">
+      <ion-label>{{metadataDisplayNames[key]}}</ion-label>
+      <ion-input type="text" [value]="metadata[key]"></ion-input>
     </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Date of birth</ion-label>
-      <ion-input type="text" [value]="uploadData.dateOfBirth"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Address</ion-label>
-      <ion-input type="text" [value]="uploadData.address"></ion-input>
-    </ion-item>
-
   </ion-list>
-  <button ion-button block (click)="onNavigate('CropIdPage')">Upload ID</button>
+  <button ion-button block (click)="submitNewDocument()">Upload ID</button>
 </ion-content>

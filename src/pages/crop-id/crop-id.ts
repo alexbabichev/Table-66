@@ -1,7 +1,7 @@
 //our root app component
 import { Component, ViewChild } from '@angular/core'
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
-import { BackendSvcProvider, MetaData } from '../../providers/backend-svc/backend-svc';
+// import { BackendSvcProvider, MetaData } from '../../providers/backend-svc/backend-svc';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
@@ -65,15 +65,17 @@ export class CropIdPage {
   }
 
   uploadCroppedPhoto() {
-    let myMetaData = {
-
-    };
     const croppedPhoto = this.croppedImage.image;
-    const fullPhotos = this.originalImage;
-    return this.onNavigate('HomePage');
+    const fullPhoto = this.originalImage;
+    let myMetaData = {
+      croppedPhoto,
+      fullPhoto
+    };
+
+    return this.onNavigate('UploadIdPage', myMetaData);
   }
 
-  onNavigate(page: string) {
-    this.navCtrl.pop();
+  onNavigate(page: string, params) {
+    this.navCtrl.push(page, params);
   }
 }

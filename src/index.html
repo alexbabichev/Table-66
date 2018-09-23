@@ -45,5 +45,19 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD1bGQ87tyT_qCXPF6srBCmpWZPRoRGGIg",
+      authDomain: "eos-hackathon-e5461.firebaseapp.com",
+      databaseURL: "https://eos-hackathon-e5461.firebaseio.com",
+      projectId: "eos-hackathon-e5461",
+      storageBucket: "eos-hackathon-e5461.appspot.com",
+      messagingSenderId: "26318123415"
+    };
+    firebase.initializeApp(config);
+  </script>
+
 </body>
 </html>

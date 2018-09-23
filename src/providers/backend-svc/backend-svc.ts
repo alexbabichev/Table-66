@@ -19,6 +19,17 @@ export interface MetaData {
   issuer: string;
 }
 
+export const metadataDisplayNames: MetaData = {
+  passportNumber: 'ID number',
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  birth: 'Birth Date',
+  expirationDate: 'Expiration date',
+  issueDate: 'Issue date',
+  issuer: 'Issuer',
+  nationality: 'Nationality',
+};
+
 @Injectable()
 export class BackendSvcProvider {
   private readonly url = 'https://tunnel3.cmlteam.com/';

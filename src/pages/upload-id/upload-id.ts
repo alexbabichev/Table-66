@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+import { DocsProvider } from '../../providers/docs/docs';
+import { Doc } from '../../providers/docs/model';
 
 @IonicPage()
 @Component({
@@ -8,23 +11,49 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UploadIdPage {
 
-  public uploadData = {
-    identityId: '',
-    fullName: '',
-    dateOfBirth: '',
-    address: '',
-  };
+  public metadata: MetaData;
+  public metadataDisplayNames: MetaData;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private croppedPhoto: any;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public docs: DocsProvider) {
+    this.metadataDisplayNames = metadataDisplayNames;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UploadIdPage');
+    this.croppedPhoto = this.navParams.data.croppedPhoto;
+    this.metadata = {
+      firstName: '',
+      lastName: '',
+      birth: '',
+      expirationDate: '',
+      issueDate: '',
+      issuer: '',
+      nationality: '',
+      passportNumber: ''
+    };
   }
 
-  onNavigate(page: string) {
-    this.navCtrl.push(page);
+  getKeys(items) {
+    return Object.keys(items);
+  }
+
+  submitNewDocument() {
+    const data: Doc = {
+      title: 'Government ID',
+      date: Date.now(),
+      proof: false
+    };
+    this.docs.addDocument(data)
+      .then(() => {
+        this.navigateHome();
+      });
+
+  }
+
+  navigateHome() {
+    this.navCtrl.pop();
+    this.navCtrl.pop();
   }
 
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import image from './image';
+import {metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+
 /**
  * Generated class for the VerificatorPage page.
  *
@@ -17,12 +19,13 @@ import image from './image';
 export class VerificatorPage {
 
   public sharedData = {
-    identityId: '123456',
-    dateOfBirth: '01/01/1900'
+    passportNumber: '123456',
+    birth: '01/01/1900'
   };
   public sharedDataKeys = [];
 
   private _placeHolderSafe: SafeUrl;
+  public metadataDisplayNames = metadataDisplayNames;
 
   constructor(
     public navCtrl: NavController,

@@ -14,7 +14,7 @@ export const userData = [
 export const config = {
   chainId: '038f4b0fc8ff18a4f0842a8f0564611f6e96e8535901dd45e43ac8691a1c4dca', // 32 byte (64 char) hex string
   keyProvider: [userData[0].pkey, userData[1].pkey, userData[2].pkey], // WIF string or array of keys..
-  httpEndpoint: 'http://dev.cryptolions.io:38888',
+  httpEndpoint: 'https://jungle.eosio.cr:443',
   expireInSeconds: 60,
   broadcast: true,
   verbose: false, // API activity
