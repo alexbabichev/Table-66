@@ -15,14 +15,14 @@
   </p>
   <ion-list>
     <button ion-item *ngFor="let doc of docs.list" (click)="onNavigate('GenerateProofPage')">
-      <ion-icon name="checkmark-circle" item-start *ngIf="doc.proof"></ion-icon>
+      <ion-icon name="checkmark-circle" item-start *ngIf="doc.proof" color="secondary"></ion-icon>
       <ion-icon name="empty" item-start *ngIf="!doc.proof"></ion-icon>
       <h2>{{doc.title}}</h2>
       <p>{{doc.date}}</p>
       <p><small>{{doc.hash}}</small></p>
       <ion-avatar item-end *ngIf="doc.proof">
-          <img src="assets/imgs/barclays-logo.png">
-        </ion-avatar>
+        <img src="assets/imgs/barclays-logo.png">
+      </ion-avatar>
     </button>
   </ion-list>
   <p><button (click)="test()">add</button></p>
