@@ -10,8 +10,8 @@
 <ion-content padding *ngIf="!isSubmitted">
   <ion-title>Your ID Card</ion-title>
   <ion-card class="id-image">
-    <ion-card-content>
-      <img src="assets/imgs/sample-id-card.jpg" alt="ID card image" />
+    <ion-card-content *ngIf="doc && doc.croppedImage">
+      <img [src]="doc.croppedImage" alt="ID card image" />
     </ion-card-content>
   </ion-card>
 
@@ -19,7 +19,7 @@
   <ion-list>
     <ion-item *ngFor="let key of getKeys(metadataDisplayNames)">
       <ion-label>{{metadataDisplayNames[key]}}</ion-label>
-      <ion-checkbox color="dark" checked="myData[key]"></ion-checkbox>
+      <ion-checkbox color="dark" checked="metadata[key]"></ion-checkbox>
     </ion-item>
   </ion-list>
   <button ion-button block (click)='generateQRCode();'>Generate QR Code</button>

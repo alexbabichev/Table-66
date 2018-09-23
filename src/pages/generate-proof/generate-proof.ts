@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backend-svc';
+import { Doc } from '../../providers/docs/model';
 
 
 @IonicPage()
@@ -9,21 +10,14 @@ import {MetaData, metadataDisplayNames} from '../../providers/backend-svc/backen
   templateUrl: 'generate-proof.html',
 })
 export class GenerateProofPage {
-  public myData = {
-    identityId: false,
-    fullName: false,
-    dateOfBirth: false,
-    address: false,
-  };
 
   public qrdata: string;
 
-  public idImage = 'resources/sample-id-card.jpg';
   public isSubmitted = false;
-
 
   public metadata: any;
   public metadataDisplayNames: MetaData;
+  public doc: Doc;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.metadataDisplayNames = metadataDisplayNames;
@@ -41,6 +35,7 @@ export class GenerateProofPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GenerateProofPage');
+    this.doc = this.navParams.data.doc;
     this.qrdata = location.protocol + '//' + location.host + '/#/verificator';
   }
 

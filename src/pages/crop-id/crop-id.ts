@@ -17,8 +17,6 @@ export class CropIdPage {
   public croppedWidth: number;
   public croppedHeight: number;
 
-  private originalImage: any;
-
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -58,7 +56,6 @@ export class CropIdPage {
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
-      that.originalImage = image;
     };
 
     myReader.readAsDataURL(file);
@@ -66,7 +63,7 @@ export class CropIdPage {
 
   uploadCroppedPhoto() {
     const croppedPhoto = this.croppedImage.image;
-    const fullPhoto = this.originalImage;
+    const fullPhoto = this.croppedImage.original;
     let myMetaData = {
       croppedPhoto,
       fullPhoto

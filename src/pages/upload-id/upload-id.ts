@@ -14,14 +14,16 @@ export class UploadIdPage {
   public metadata: MetaData;
   public metadataDisplayNames: MetaData;
 
-  private croppedPhoto: any;
+  private fullImage: any;
+  private croppedImage: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public docs: DocsProvider) {
     this.metadataDisplayNames = metadataDisplayNames;
   }
 
   ionViewDidLoad() {
-    this.croppedPhoto = this.navParams.data.croppedPhoto;
+    this.croppedImage = this.navParams.data.croppedPhoto;
+    this.fullImage = this.navParams.data.fullPhoto;
     this.metadata = {
       firstName: '',
       lastName: '',
@@ -42,7 +44,9 @@ export class UploadIdPage {
     const data: Doc = {
       title: 'Government ID',
       date: Date.now(),
-      proof: false
+      proof: false,
+      fullImage: this.fullImage,
+      croppedImage: this.croppedImage
     };
     this.docs.addDocument(data)
       .then(() => {
