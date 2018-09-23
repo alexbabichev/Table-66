@@ -40,7 +40,10 @@ export class DocsProvider {
       date: Date.now(),
       proof: false
     };
+    return this.addDocument(data);
+  }
 
+  async addDocument(data: Doc) {
     this.list.push(data);
     const hash = sha256(JSON.stringify(data));
 
