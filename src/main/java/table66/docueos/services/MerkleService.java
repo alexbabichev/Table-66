@@ -68,11 +68,13 @@ public class MerkleService {
 
     @RequestMapping(value = "/passport/{hash}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("hash") String passportHash) {
-        passportStorage.remove(passportHash);
+        if(passportStorage.remove(passportHash) == null) {
+            throw new NotFoundException();
+        }
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/share/{hash}", method = RequestMethod.POST)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.POST)
     public ResponseEntity<?> share(
             @PathVariable("hash") String passportHash,
             @RequestParam("fields") String[] fields
@@ -99,21 +101,23 @@ public class MerkleService {
             share.buildMerkleProof(passport);
             String hash = share.calculateHash();
             shareStorage.put(hash, share);
-            // TODO: "/verify/" should not be hardcoded
-            return ResponseEntity.created(new URI("/verify/" + hash)).build();
+            // TODO: "/verification/" should not be hardcoded
+            return ResponseEntity.created(new URI("/verification/" + hash)).build();
         }
         catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    @RequestMapping(value = "/share/{hash}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeShare(@PathVariable("hash") String shareHash) {
-        shareStorage.remove(shareHash);
+        if(shareStorage.remove(shareHash) == null) {
+            throw new NotFoundException();
+        }
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "/verify/{hash}", method = RequestMethod.GET)
+    @RequestMapping(value = "/verification/{hash}", method = RequestMethod.GET)
     public Passport verify(@PathVariable("hash") String shareHash) {
         Passport share = shareStorage.get(shareHash);
         if(share == null) {
