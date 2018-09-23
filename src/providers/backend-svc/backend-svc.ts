@@ -49,7 +49,7 @@ export class BackendSvcProvider {
   }
 
   sharePartialData(documentHash: string, partialMetadata: Partial<MetaData>) {
-    let fullUrl = this.url + 'share/' + documentHash;
+    let fullUrl = this.url + 'verification/' + documentHash;
     return this.http.post(fullUrl, partialMetadata).toPromise();
   }
 
