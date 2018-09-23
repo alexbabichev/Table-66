@@ -63,7 +63,7 @@ export class CropIdPage {
 
   uploadCroppedPhoto() {
     const croppedPhoto = this.croppedImage.image;
-    const fullPhoto = this.croppedImage.original;
+    const fullPhoto = this.croppedImage.original.src;
     let myMetaData = {
       croppedPhoto,
       fullPhoto

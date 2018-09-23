@@ -8,9 +8,9 @@
   <ion-list *ngIf="metadata">
     <ion-item>
       <ion-title>Full ID</ion-title>
-      <img src="assets/imgs/sample-id-card.jpg">
+      <img [src]="fullImage">
       <ion-title>Cropped ID</ion-title>
-      <img [src]="croppedPhoto">
+      <img [src]="croppedImage">
     </ion-item>
     <ion-item *ngFor="let key of getKeys(metadataDisplayNames)">
       <ion-label>{{metadataDisplayNames[key]}}</ion-label>
