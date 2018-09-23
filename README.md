@@ -1,18 +1,33 @@
 # προοφεοσ – Table66 @eoshackathon
 __Secure Data Proof with Privacy You Control__
 
-## Preamble
-How many times a year do you show your ID? Each time you need to reveal all the information it contains, even if your intent is showing only a portion of it. This is neither confidential nor convenient. Having an ID always with you may also entail additional risks of being stolen or lost.
+## The Pitch
 
-Our solution is an EOSIO-based user-friendly app named “Proofeos” that allows to prove the data of your choice to a certain party.  
+How often do you show your ID? People show it every day, in different cases, to others they’re not acquainted with. Each time you show your ID, you disclose _all the data_ on it. This is neither secure nor private. You can forget it at home or even lose. But what if you have your ID in your cell phone? How to prove to others it's valid?
 
-Let’s take a look at the demo: you want to buy beer in a store, and a cashier has to verify that you’re over 21. Normally, you’d show your ID with the full info. But why should you disclose all the information? And what if your ID was left at home? Here’s what we propose. A person uses an app to upload the ID and verify it by some trusted authority (like a bank). Each time the third party requests this ID for certain purposes, a person chooses, which info to disclose, and generates the QR code. The cashier in the store only needs to scan this code and obtain the verified info that this person is over 21. 
+Our team has created "Proofeos" - an EOS-based user-friendly mobile app that allows uploading and validating your document, and then _choosing_ what data you want you disclose to the third party and prove it's valid. 
 
-Think of it as an ApplePay for ID proof. No need to carry your ID with you and disclose all the data when only your age is required.
+Imagine a young-looking person wishing to buy a beer in a store, and a cashier has to verify that the person is over 21. The person launches "Proofeos" app. 
 
-What are the growth opportunities? Now, there are 6.6 Billion people with IDs on Earth. And these are only IDs. What about proof of your university degree to apply for a job? A driver’s licence to rent a car? And each time we have either to have all these docs with us and disclose them in full, or transfer them insecurely. 
 
-Proofeos solves this problem using EOS blockchain and providing a secure data proof with privacy you control. Keeping transactions costs as low as possible is essential for this application, that’s why EOS looks to be a good fit for it.
+#### Demo: 
+* __Screen 1__: Here is the main screen of the app. It shows a list of already verified documents.   
+  A user can add a new document
+* __Screen 2__: By taking photo of that document  
+  And filling in the provided fields.
+* __Screen 3__: Thereby, the root hash of the document is sent to the Blockchain 
+* __Screen 4__: However, this document can’t be used until it gets verified by a recognizable authority (like a bank).
+* __Screen 5__: When the document gets verified (see the checkmark appeared),a user can generate a proof. Let’s use the driving licence.
+* __Screen 6__: A user selects the data to share. A birth date and a photo are definitely enough for a cashier to verify his age. Exposing a name is definitely not required. So he presses ‘Done’ and the QR code proof is generated.
+* __Screen 7__: The verifier has to scan the QR-code proof with their cell phone and validate it.
+* __Screen 8__: The cashier sees the age proof as a photo along with a birth date on their cell phone. They can easily match it to the buyer.   
+  The cashier can be sure this was not faked ‘cause Proof was validated via Blockchain smart contract. And the buyer doesn't need to disclose extra info or even have the actual ID with him. 
+
+Think of it as an ApplePay for ID proof. No need to carry your ID with you and disclose all the personal data when only your age is needed.
+
+Currently, there are __6.6 Billion__ people on Earth with IDs. And these are just IDs. What about proof of your university degree when you apply for a job? A driver’s licence to rent a car? 
+
+Sharing private identification data already became a problem. W3C has established a "Verifiable Claims work group" and is actively working on standardizing the industry. GDPR regulation is live and represents a __$3.5 billion__ security products. "Proofeos" will solve this problem by providing a decentralized, secure and privacy preserving way of sharing Credentials, in both human and smart contract readable form. 
 
 ## Use Case Flow 
 
