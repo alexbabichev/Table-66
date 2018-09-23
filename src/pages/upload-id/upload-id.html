@@ -6,7 +6,10 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let key of getKeys(metadataDisplayNames)">
+      <ion-title>{{metadataDisplayNames[key]}}</ion-title>
+    </ion-item>
+    <!-- <ion-item>
       <ion-title>Full ID</ion-title>
       <img src="assets/imgs/sample-id-card.jpg">
       <ion-title>Cropped ID</ion-title>
@@ -30,7 +33,7 @@
     <ion-item>
       <ion-label fixed>Address</ion-label>
       <ion-input type="text" [value]="uploadData.address"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
   </ion-list>
   <button ion-button block (click)="onNavigate('CropIdPage')">Upload ID</button>

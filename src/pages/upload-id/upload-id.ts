@@ -24,14 +24,14 @@ export class UploadIdPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.metadataDisplayNames = {
+      passportNumber: 'ID number',
       firstName: 'First Name',
       lastName: 'Last Name',
       birth: 'Birth Date',
       expirationDate: 'Expiration date',
       issueDate: 'Issue date',
       issuer: 'Issuer',
-      nationality: '',
-      passportNumber: ''
+      nationality: 'Nationality',
     };
   }
 
@@ -47,6 +47,10 @@ export class UploadIdPage {
       nationality: '',
       passportNumber: ''
     };
+  }
+
+  getKeys(items) {
+    return Object.keys(items);
   }
 
   onNavigate(page: string) {
