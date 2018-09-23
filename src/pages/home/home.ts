@@ -15,6 +15,11 @@ export class HomePage {
     public docs: DocsProvider
   ) { }
 
+  ionViewDidEnter() {
+      this.docs.loadDocs();
+      console.log(1);
+  }
+
   onNavigate(page: string) {
     this.navCtrl.push(page);
   }

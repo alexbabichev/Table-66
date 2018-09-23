@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>appove</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let doc of docs.eos.pending" (click)="onClick(doc)">
+      <p><small>{{doc.hash}}</small></p>
+      <p>{{doc.id}}</p>
+    </button>
+  </ion-list>
+</ion-content>

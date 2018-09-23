@@ -12,7 +12,10 @@ export class EosProvider {
   private contractName = 'epsilon';
   private contract: any;
 
+  private options = { authorization: [ userData[0].username + `@active` ] };
+
   public hashes: Array<HashObj>;
+  public pending: Array<HashObj>;
 
   constructor() { }
 
@@ -32,8 +35,10 @@ export class EosProvider {
       const balance = await this.getBalance(userData[0].username);
       console.log('Currency Balance', balance)
 
-      this.hashes = await this.getTable('hashdata');
-      console.log(this.hashes);
+      this.getTables();
+      console.log(this.hashes, this.pending);
+      console.log(userData[2].username);
+      // this.adduser(userData[2].username);
     } catch (error) {
       console.log(error);
     }
@@ -46,27 +51,46 @@ export class EosProvider {
       .then(r => r.core_liquid_balance);
   }
 
+  async getTables() {
+    this.hashes = await this.getTable('hashdata');
+    this.pending  = await this.getTable('pendinghash');
+    const users  = await this.getTable('users');
+    console.log(this.hashes, this.pending, users);
+  }
+
   //
 
   getTable(tableName) {
-    return this.eos.getTableRows(true, this.contractName, this.contractName, tableName)
+    const opts = {
+      json: true,
+      scope: this.contractName,
+      code: this.contractName,
+      table: tableName,
+      limit: 1000
+    }
+    return this.eos.getTableRows(opts)
       .then(r => r.rows);
   }
 
   // contract methods
-  // action’ы adduser и removeuser требуют отправки из кошеля epsilon, 
-  // add из любого акка, approve только от добавленного акка, который добавлен с помощью функции adduser
+  // actions adduser и removeuser must be called from owner acc, 
+  // add from any acc, approve can be called only by appoved person by adduser method
 
   add(hash = '') {
-    return this.contract.add(hash);
+    return this.contract.add(hash, this.options);
   }
 
   adduser(user: string) {
-    return this.contract.adduser(user);
+    const verifier = userData[2].username;
+    const options = { authorization: [ verifier + `@active` ], sign: true };
+    return this.contract.adduser(user, options);
   }
 
-  approve(sender: string, hash: string) {
-    return this.contract.approve(sender, hash);
+  // TODO: approve(verifier: string, hash: string)
+  approve(hash: string) {
+    const verifier = userData[2].username;
+    const options = { authorization: [ verifier + `@active` ], sign: true };
+    return this.contract.approve(verifier, hash, options);
   }
 
   removeuser(user: string) {

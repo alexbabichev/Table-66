@@ -1,5 +1,6 @@
 export interface Doc {
   title: string;
-  date: string;
+  date: number;
   proof: boolean;
+  hash?: string;
 }
